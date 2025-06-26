@@ -1,0 +1,6 @@
+# Custom port configuration
+receivers:
+  otlp/grpc:
+    endpoint: "0.0.0.0:9317"  # Custom gRPC port
+  otlp/http:
+    endpoint: "0.0.0.0:9318"  # Custom HTTP port

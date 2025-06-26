@@ -1,0 +1,20 @@
+# Instana-specific test configuration
+receivers:
+  otlp/grpc:
+    endpoint: "0.0.0.0:4317"  # Instana standard
+  otlp/http:
+    endpoint: "0.0.0.0:4318"  # Instana standard
+
+processors:
+  resource/instana:
+    attributes:
+      - key: instana.agent.host
+        value: "test-agent"
+        action: insert
+      - key: instana.zone
+        value: "test-zone"
+        action: insert
+
+exporters:
+  file/instana:
+    path: "./test-output/instana-metrics.json"

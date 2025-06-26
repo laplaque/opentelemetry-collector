@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  otel-testsuite:
+    build: .
+    ports:
+      - "${OTLP_GRPC_PORT:-4317}:${OTLP_GRPC_PORT:-4317}"
+      - "${OTLP_HTTP_PORT:-4318}:${OTLP_HTTP_PORT:-4318}"
+      - "${PROMETHEUS_EXPORT_PORT:-8889}:${PROMETHEUS_EXPORT_PORT:-8889}"
+      - "${HEALTH_CHECK_PORT:-13133}:${HEALTH_CHECK_PORT:-13133}"
+    volumes:
+      - "./test-output:/app/test-output"
+      - "./config.yaml:/etc/otelcol/config.yaml"
+      - "./profiles:/app/profiles"
+    environment:
+      - OTLP_GRPC_PORT=${OTLP_GRPC_PORT:-4317}
+      - OTLP_HTTP_PORT=${OTLP_HTTP_PORT:-4318}
+      - OUTPUT_DIR=/app/test-output
+    env_file:
+      - .env
