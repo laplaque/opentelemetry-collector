@@ -1,0 +1,15 @@
+name: otel-testsuite-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pytest
+  - pytest-asyncio
+  - docker-compose
+  - pip:
+    - prometheus-client
+    - opentelemetry-api
+    - opentelemetry-sdk
+    - opentelemetry-exporter-otlp-proto-http
